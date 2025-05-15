@@ -7,12 +7,13 @@ header {
   border-bottom: 1px solid #a4d7c4;
   padding: 0 0 20px 0;
 }
+
 a {
   color: #2a6171;
 }
 .weather-app {
   background: whitesmoke;
-  max-width: 800px;
+  max-width: 600px;
   margin: 30px auto;
   box-shadow: 10px 15px 10px #75cac3;
   border-radius: 12px;
@@ -38,7 +39,7 @@ a {
 .current-city {
   font-size: 50px;
   line-height: 55px;
-  margin: 20px;
+  margin: 20px 20px 0 20px;
   text-align: center;
   text-shadow: 2px 0 rgb(154, 154, 242);
 }
@@ -50,7 +51,29 @@ a {
   font-size: 16px;
   line-height: 20px;
 }
-.current-temp {
+.current-container {
+  display: flex;
+}
+.current-icon {
+  font-size: 45px;
+  margin-top: 15px;
+}
+.current-htemp {
+  font-size: 75px;
+  font-weight: 900;
+
+  margin-left: 10px;
+}
+.current-ltemp {
+  font-size: 20px;
+  margin-left: 5px;
+  margin-top: 45px;
+  color: rgba(#2a6171, 0.4);
+}
+.current-description {
+  font-size: 16px;
+
+  text-align: center;
 }
 footer {
   border-top: 1px solid #a4d7c4;
