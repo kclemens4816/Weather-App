@@ -61,14 +61,21 @@ a {
 .current-htemp {
   font-size: 75px;
   font-weight: 900;
-
   margin-left: 10px;
 }
+.current-htemp-unit {
+  font-size: 35px;
+  margin-top: 15px;
+}
 .current-ltemp {
-  font-size: 20px;
+  font-size: 24px;
   margin-left: 5px;
   margin-top: 45px;
   color: rgba(#2a6171, 0.4);
+}
+.current-ltemp-unit {
+  font-size: 12px;
+  margin-top: 48px;
 }
 .current-description {
   font-size: 16px;
