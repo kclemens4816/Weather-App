@@ -16,18 +16,19 @@
   <body>
     <div class="weather-app">
       <header>
-        <form class="search-form">
+        <form class="search-form" id="search-form">
           <input
             type="search"
             placeholder="Enter a city. . ."
             required
             class="search-form-input"
+            id="search-form-input"
           />
           <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
       <main>
-        <h1 class="current-city">Slinger Weather</h1>
+        <h1 class="current-city" id="current-city">Slinger Weather</h1>
         <div class="current-data">
           <div class="current-details">
             <p>
@@ -65,6 +66,7 @@
           >Netlify</a
         >
       </footer>
+      <script src="src/index.js"></script>
     </div>
   </body>
 </html>
