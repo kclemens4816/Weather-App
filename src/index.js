@@ -1,10 +1,55 @@
 function refreshWeather(response) {
-  console.log(response);
-  let tempElement = document.querySelector("#current-htemp");
+  let htempElement = document.querySelector("#current-htemp");
   let temp = Math.round(response.data.temperature.current);
   let cityElement = document.querySelector("#current-city");
+  let descriptionElement = document.querySelector("#current-description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let timeElement = document.querySelector("#time");
+  let date = new Date(response.data.time * 1000);
+
+  console.log(response.data);
   cityElement.innerHTML = response.data.city + " Weather";
-  tempElement.innerHTML = temp;
+  htempElement.innerHTML = temp;
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = `${response.data.temperature.humidity} %`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed} mph`;
+  timeElement.innerHTML = formatDate(date);
+}
+
+function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  if (minutes < 10) {
+    minutes = `0$(minutes)`;
+  }
+  let dateNumber = date.getDate();
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let month = months[date.getMonth()];
+  return `${day}, ${month} ${dateNumber}, ${hours}:${minutes}`;
 }
 
 function searchCity(city) {
@@ -22,3 +67,5 @@ function changeCity(event) {
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", changeCity);
+
+searchCity("Slinger");
