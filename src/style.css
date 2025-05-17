@@ -56,12 +56,10 @@ a {
 }
 .current-icon {
   font-size: 45px;
-  margin-top: 15px;
 }
 .current-htemp {
   font-size: 75px;
   font-weight: 900;
-  margin-left: 10px;
 }
 .current-htemp-unit {
   font-size: 35px;
