@@ -1,3 +1,4 @@
+//refresh current temperature
 function refreshWeather(response) {
   //console.log(response);
   let htempElement = document.querySelector("#current-htemp");
@@ -18,8 +19,10 @@ function refreshWeather(response) {
   windSpeedElement.innerHTML = `${response.data.wind.speed} mph`;
   timeElement.innerHTML = formatDate(date);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="current-icon" />`;
+  getForecast("Slinger");
 }
 
+//date and time
 function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
@@ -55,12 +58,14 @@ function formatDate(date) {
   return `${day}, ${month} ${dateNumber}, ${hours}:${minutes}`;
 }
 
+//api
 function searchCity(city) {
   let apiKey = "e36bedf058ea7aaa7t6f690378o56bd4";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(refreshWeather);
 }
 
+//search city change title
 function changeCity(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
@@ -68,7 +73,17 @@ function changeCity(event) {
   searchCity(searchInput.value);
 }
 
-function displayForecast() {
+// forecast
+function getForecast(city) {
+  let apiKey = "e36bedf058ea7aaa7t6f690378o56bd4";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=imperial`;
+  //console.log(apiUrl);
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  console.log(response.data);
+
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
 
@@ -97,4 +112,3 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", changeCity);
 
 searchCity("Slinger");
-displayForecast();
