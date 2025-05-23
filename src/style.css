@@ -77,8 +77,31 @@ a {
 }
 .current-description {
   font-size: 16px;
-
   text-align: center;
+}
+.weather-forecast {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.forecast-date {
+  text-align: center;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+.forecast-icon {
+  text-align: center;
+  font-size: 35px;
+}
+.forecast-temps {
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.forecast-temp {
+  padding: 0 10px;
 }
 footer {
   border-top: 1px solid #a4d7c4;
