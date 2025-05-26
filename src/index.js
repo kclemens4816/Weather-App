@@ -7,6 +7,8 @@ function refreshWeather(response) {
   let descriptionElement = document.querySelector("#current-description");
   let humidityElement = document.querySelector("#humidity");
   let windSpeedElement = document.querySelector("#wind-speed");
+  let feelsLikeElement = document.querySelector("#feels-like");
+  let feelsLike = Math.round(response.data.temperature.feels_like);
   let timeElement = document.querySelector("#time");
   let date = new Date(response.data.time * 1000);
   let iconElement = document.querySelector("#current-icon");
@@ -17,6 +19,7 @@ function refreshWeather(response) {
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity} %`;
   windSpeedElement.innerHTML = `${response.data.wind.speed} mph`;
+  feelsLikeElement.innerHTML = `${feelsLike} °F`;
   timeElement.innerHTML = formatDate(date);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="current-icon" />`;
   getForecast(response.data.city);
@@ -37,7 +40,7 @@ function formatDate(date) {
   ];
   let day = days[date.getDay()];
   if (minutes < 10) {
-    minutes = `0$(minutes)`;
+    minutes = `0${minutes}`;
   }
   let dateNumber = date.getDate();
   let months = [
@@ -72,10 +75,18 @@ function changeCity(event) {
 
   searchCity(searchInput.value);
 }
-
+//forecast days
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
   return days[date.getDay()];
 }
@@ -100,6 +111,7 @@ function displayForecast(response) {
           <div class="forecast-day">
             <div class="forecast-date">${formatDay(day.time)}</div>
             <img src="${day.condition.icon_url}" class="forecast-icon" />
+            <div class="forecast-description">${day.condition.description}</div>
             <div class="forecast-temps">
               <div class="forecast-temp">
                 <strong>${Math.round(day.temperature.maximum)}°</strong>
